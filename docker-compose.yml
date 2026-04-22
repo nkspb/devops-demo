@@ -1,0 +1,16 @@
+services:
+  devops-demo:
+    image: devops-demo:0.1
+    container_name: devops-demo-app
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+  db:
+    image: postgres:alpine3.22
+    container_name: postgres-db
+    shm_size: 128mb
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+
+
