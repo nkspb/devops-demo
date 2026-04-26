@@ -10,12 +10,12 @@ services:
       DB_PORT: 5432
       DB_NAME: appdb
       DB_USER: dbuser
-      DB_PASSWORD: dbpass
+      DB_PASS: dbpass
   db:
     image: postgres:17-alpine3.23
     container_name: postgres-db
     shm_size: 128mb
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: dbuser
       POSTGRES_PASSWORD: dbpass

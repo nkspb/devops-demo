@@ -12,3 +12,8 @@ def test_version():
     response = client.get("/version")
     assert response.status_code == 200
     assert response.json() == {"message": "v0.1"}
+
+def test_config():
+    response = client.get("/config")
+    assert response.status_code == 200
+    assert response.json() == {"db_host":"db","db_port":"5432","db_name":"appdb"}

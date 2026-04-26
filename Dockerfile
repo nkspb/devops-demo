@@ -3,6 +3,7 @@ WORKDIR /app
 
 # Install app dependencies
 COPY requirements.txt ./
+# RUN apt update && apt-get -y install --no-install-recommends libpq-dev
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source code
