@@ -8,4 +8,4 @@ client = TestClient(app)
 def test_db_integration():
     response = client.get("/db-check")
     assert response.status_code == 200
-    assert response.json() == {"db_status": "ok", "result": "1"}
+    assert response.json() == {"db_status": "ok", "result": 1}
