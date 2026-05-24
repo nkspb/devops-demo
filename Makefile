@@ -1,6 +1,6 @@
 test:
 	@echo "Running non-integration tests..."
-	python -m pytest -m "not integration"
+	./venv/bin/python -m pytest -m "not integration"
 
 test-integration:
 	@echo "Running integration tests..."
