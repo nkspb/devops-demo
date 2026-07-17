@@ -15,6 +15,7 @@ test-all:
 	docker compose exec devops-demo python -m pytest
 
 ci:
+	$(MAKE) venv
 	@echo "Running deployment pipeline"
 	$(MAKE) test
 	
