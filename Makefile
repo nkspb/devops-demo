@@ -1,8 +1,11 @@
-venv:
+.PHONY: setup test test-integration test-all ci
+
+setup:
 	@echo "Creating a virtual environment..."
 	python3 -m venv venv
 	./venv/bin/python -m pip install -r requirements.txt
-test:
+
+test: setup
 	@echo "Running non-integration tests..."
 	./venv/bin/python -m pytest -p no:cacheprovider -m "not integration"
 
@@ -15,7 +18,6 @@ test-all:
 	docker compose exec devops-demo python -m pytest
 
 ci:
-	$(MAKE) venv
 	@echo "Running deployment pipeline"
 	$(MAKE) test
 	
