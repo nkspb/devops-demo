@@ -1,6 +1,6 @@
 test:
 	@echo "Running non-integration tests..."
-	./venv/bin/python -m pytest -m "not integration"
+	./venv/bin/python -m pytest -p no:cacheprovider -m "not integration"
 
 test-integration:
 	@echo "Running integration tests..."
@@ -9,3 +9,14 @@ test-integration:
 test-all:
 	@echo "Running all tests..."
 	docker compose exec devops-demo python -m pytest
+
+ci:
+	@echo "Running deployment pipeline"
+	$(MAKE) test
+	
+	docker build -t devops-demo:0.1 .
+
+	docker compose up -d --force-recreate --wait
+	docker compose ps
+	
+	$(MAKE) test-integration
