@@ -1,3 +1,7 @@
+venv:
+	@echo "Creating a virtual environment..."
+	python3 -m venv venv
+	./venv/bin/python -m pip install -r requirements.txt
 test:
 	@echo "Running non-integration tests..."
 	./venv/bin/python -m pytest -p no:cacheprovider -m "not integration"
