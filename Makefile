@@ -27,3 +27,6 @@ ci:
 	docker compose ps
 	
 	$(MAKE) test-integration
+	echo "$$DOCKERHUB_TOKEN" | docker login -u "$$DOCKERHUB_USER" --password-stdin
+	docker tag devops-demo:0.1 "$$DOCKERHUB_USER/devops-demo:0.1"
+	docker push "$$DOCKERHUB_USER/devops-demo:0.1"
