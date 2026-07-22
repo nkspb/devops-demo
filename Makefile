@@ -1,5 +1,9 @@
 .PHONY: setup test test-integration test-all ci
 
+IMAGE_NAME ?= devops-demo
+IMAGE_TAG ?= local
+DOCKERHUB_REPO ?= $(DOCKERHUB_USER)/devops-demo
+
 setup:
 	@echo "Creating a virtual environment..."
 	python3 -m venv venv
@@ -21,12 +25,13 @@ ci:
 	@echo "Running deployment pipeline"
 	$(MAKE) test
 	
-	docker build -t devops-demo:0.1 .
+	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
 	docker compose up -d --force-recreate --wait
 	docker compose ps
 	
 	$(MAKE) test-integration
 	echo "$$DOCKERHUB_TOKEN" | docker login -u "$$DOCKERHUB_USER" --password-stdin
-	docker tag devops-demo:0.1 "$$DOCKERHUB_USER/devops-demo:0.1"
-	docker push "$$DOCKERHUB_USER/devops-demo:0.1"
+	docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(DOCKERHUB_REPO)/$(IMAGE_TAG)
+	docker push $(DOCKERHUB_REPO)/$(IMAGE_TAG)
+	docker logout
