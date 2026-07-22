@@ -32,6 +32,6 @@ ci:
 	
 	$(MAKE) test-integration
 	echo "$$DOCKERHUB_TOKEN" | docker login -u "$$DOCKERHUB_USER" --password-stdin
-	docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(DOCKERHUB_REPO)/$(IMAGE_TAG)
-	docker push $(DOCKERHUB_REPO)/$(IMAGE_TAG)
+	docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(DOCKERHUB_REPO):$(IMAGE_TAG)
+	docker push $(DOCKERHUB_REPO):$(IMAGE_TAG)
 	docker logout
