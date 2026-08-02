@@ -15,7 +15,7 @@ pipeline {
 						passwordVariable: 'DOCKERHUB_TOKEN'
 					)
 				]) {
-					sh 'echo Dockerhub user is: $DOCKERHUB_USER"'
+					sh 'echo "Dockerhub user is: $DOCKERHUB_USER"'
 					sh 'make ci IMAGE_TAG=$IMAGE_TAG'
 				   }
 			}
