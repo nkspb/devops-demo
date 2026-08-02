@@ -27,7 +27,7 @@ ci:
 	
 	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
-	docker compose up -d --force-recreate --wait
+	IMAGE_TAG=$(IMAGE_TAG) docker compose up -d --force-recreate --wait
 	docker compose ps
 	
 	$(MAKE) test-integration

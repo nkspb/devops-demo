@@ -1,6 +1,6 @@
 services:
   devops-demo:
-    image: devops-demo:0.1
+    image: devops-demo:${IMAGE_TAG:-local}
     ports:
       - "8000:8000"
     restart: unless-stopped
